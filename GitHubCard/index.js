@@ -5,13 +5,13 @@ import axios from 'axios';
     https://api.github.com/users/<your name>
 */
 
-const entryPoint = document.querySelector('.cards')
+// const entryPoint = document.querySelector('.cards')
 
-  axios.get(`https://api.github.com/users/tetondan`)
+  axios.get(`https://api.github.com/users/JorgeEvangelista500`)
     .then(resp => {
       console.log(resp.data);
       const cardObj = (resp);
-      entryPoint.appendChild(newProfile(cardObj))
+      document.querySelector('.cards').appendChild(newProfile(cardObj))
       // return cardObj
     }).catch(error => {
       console.error(error); 
@@ -40,7 +40,11 @@ const entryPoint = document.querySelector('.cards')
     user, and adding that card to the DOM.
 */
 
-const followersArray = [];
+const followersArray = ['tetondan',
+  'dustinmyers',
+  'justsml',
+  'luishrd',
+  'bigknell']
 
 /*
   STEP 3: Create a function that accepts a single object as its only argument.
@@ -101,7 +105,17 @@ function newProfile(obj) {
   
     return cardWrapper;
   }
-  
+for (let i = 0; i < followersArray.length; i++){
+  axios.get(`https://api.github.com/users/${followersArray[i]}`)
+    .then(resp => {
+      console.log(resp.data);
+      const cardObj = (resp);
+      document.querySelector('.cards').appendChild(newProfile(cardObj))
+      // return cardObj
+    }).catch(error => {
+      console.error(error); 
+    })
+}
  
 
 /*
